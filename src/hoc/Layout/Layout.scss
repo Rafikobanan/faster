@@ -1,0 +1,9 @@
+@import '../../colors';
+
+.wrapper {
+	height: 100%;
+
+	&.dark {
+		background-color: $dark;
+	}
+}

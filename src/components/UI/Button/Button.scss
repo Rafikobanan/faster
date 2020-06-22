@@ -1,0 +1,20 @@
+@import '../../../colors';
+
+.btn {
+	display: inline-block;
+	font-size: 13px;
+	line-height: 36px;
+	padding: 0 15px;
+	border-radius: 3px;
+	font-weight: 500;
+
+	&_primary {
+		color: #fff;
+		background-color: $blue;
+	}
+
+	&_grey {
+		color: #fff;
+		background-color: $grey;
+	}
+}
