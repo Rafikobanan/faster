@@ -1,7 +1,8 @@
 @import '../../colors';
 
 .wrapper {
-	height: 100%;
+	height: inherit;
+	min-height: inherit;
 
 	&.dark {
 		background-color: $dark;
