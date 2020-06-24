@@ -15,7 +15,7 @@
 		padding: 15px;
 		resize: vertical;
 		font-size: 16px;
-		margin-bottom: 3px;
+		margin-bottom: 8px;
 
 		&:focus {
 			border-color: $blue;
@@ -25,7 +25,7 @@
 
 	&__btn {
 		& + & {
-			margin-left: 10px;
+			margin-left: 6px;
 		}
 	}
 

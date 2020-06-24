@@ -1,15 +1,4 @@
-// {
-// 	text: '',
-// 	parsedText: [],
-// 	styles: {
-// 		fontSize: 24,
-// 		fontFamily: 'Verdana',
-// 		marginTop: 0,
-// 	},
-// 	speed: 300
-// }
-
-import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED } from "./types";
+import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED, CHANGE_CURRENT_WORD } from "./types";
 
 export default function(state, action) {
 	switch (action.type) {
@@ -76,6 +65,13 @@ export default function(state, action) {
 			return {
 				...state,
 				speed: action.payload
+			};
+
+		case CHANGE_CURRENT_WORD:
+			return {
+				...state,
+				currentWord: state.parsedText[state.currentIndex],
+				currentIndex: state.currentIndex + action.payload
 			};
 
 		default: 

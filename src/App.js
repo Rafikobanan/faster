@@ -7,6 +7,7 @@ import { TextContext } from './context/textContext';
 import { ThemeContext } from './context/themeContext';
 import textReducer from './reducers/textReducer';
 import themeReducer from './reducers/themeReducer';
+import CurrentWord from './containers/CurrentWord/CurrentWord';
 
 function App() {
 	const [textState, textDispatch] = useReducer(textReducer, {
@@ -17,7 +18,9 @@ function App() {
 			fontFamily: 'Verdana',
 			marginTop: 0,
 		},
-		speed: 300
+		speed: 300,
+		currentWord: {letterInd: 0, word: ''},
+		currentIndex: 0,
 	});
 
 	const [themeState, themeDispatch] = useReducer(themeReducer, '');
@@ -27,12 +30,15 @@ function App() {
 			theme: themeState, themeDispatch
 		}}>
 			<TextContext.Provider value={{
-				text: textState.text, styles: textState.styles, speed: textState.speed, textDispatch
+				text: textState.text, styles: textState.styles, speed: textState.speed, 
+				parsedText: textState.parsedText, currentWord: textState.currentWord,
+				textDispatch
 			}}>
 			<Switch>
 				<Layout>
-					<Route path="/current" component={Current}/>
-					<Route path="/" exact component={Insert}/>
+					<Route path="/current" component={Current} />
+					<Route path="/current-word" component={CurrentWord} />
+					<Route path="/" exact component={Insert} />
 					<Redirect to="/" component={Insert} />
 				</Layout>
 			</Switch>
