@@ -15,14 +15,20 @@ export default function(state, action) {
 			};
 
 		case PARSE_TEXT:
+			const parsedText = state.text.split(/[\s]/).filter(word => word).map(word => {
+				const length = word.length;
+				const letterInd = Math.round(length / 4);
+
+				return {
+					letterInd,
+					word
+				};
+			});
+
 			return {
 				...state,
-				parsedText: [...state.text.split(' ').filter(word => word).map(word => {
-					return {
-						letterInd: Math.round(word.length / 2 - 1),
-						word
-					};
-				})]
+				parsedText,
+				currentWord: parsedText[0]
 			};
 
 		case CHANGE_FONT_SIZE:
@@ -68,10 +74,17 @@ export default function(state, action) {
 			};
 
 		case CHANGE_CURRENT_WORD:
+			let currentIndex = state.currentIndex + action.payload;
+			const parsedTextLastIndex = state.parsedText.length - 1;
+
+			if (currentIndex < 0) currentIndex = 0;
+
+			if (currentIndex > parsedTextLastIndex) currentIndex = parsedTextLastIndex;
+
 			return {
 				...state,
-				currentWord: state.parsedText[state.currentIndex],
-				currentIndex: state.currentIndex + action.payload
+				currentWord: state.parsedText[currentIndex],
+				currentIndex
 			};
 
 		default: 

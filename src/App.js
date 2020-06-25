@@ -31,7 +31,7 @@ function App() {
 		}}>
 			<TextContext.Provider value={{
 				text: textState.text, styles: textState.styles, speed: textState.speed, 
-				parsedText: textState.parsedText, currentWord: textState.currentWord,
+				parsedText: textState.parsedText, currentWord: textState.currentWord, currentIndex: textState.currentIndex,
 				textDispatch
 			}}>
 			<Switch>
