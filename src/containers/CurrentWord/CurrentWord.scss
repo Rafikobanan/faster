@@ -1,3 +1,5 @@
+@import '../../colors';
+
 .current-word {
 	position: relative;
 	font-family: Verdana;
@@ -5,8 +7,12 @@
 	margin: 0 auto;
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
-	width: 270px;
+	width: 330px;
 	padding: 12px 0;
+
+	&__inner {
+		width: 999px;
+	}
 
 	&::before,
 	&::after {
@@ -27,7 +33,28 @@
 		border-bottom: 10px solid #000;
 	}
 
+	&__left {
+		position: absolute;
+		font-size: 8px;
+		top: calc(100% + 5px);
+		right: 0;
+	}
+
 	&__letter {
 		color: red;
+	}
+}
+
+.dark.current-word {
+	color: $white;
+	border-color: $lightgray;
+
+
+	&::before {
+		border-top-color: $lightgray;
+	}
+
+	&::after {
+		border-bottom-color: $lightgray;
 	}
 }

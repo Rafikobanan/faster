@@ -3,6 +3,7 @@
 .wrapper {
 	height: inherit;
 	min-height: inherit;
+	overflow-x: hidden;
 
 	&.dark {
 		background-color: $dark;

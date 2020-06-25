@@ -3,6 +3,9 @@ import './CurrentWord.scss';
 import { TextContext } from '../../context/textContext';
 import useInterval from '../../hooks/interval.hook';
 import { CHANGE_CURRENT_WORD } from '../../reducers/types';
+import { ThemeContext } from '../../context/themeContext';
+import { useHistory } from 'react-router-dom';
+import useEventListener from '../../hooks/event.hook';
 
 const marginTop = 117;
 
@@ -11,7 +14,23 @@ function CurrentWord() {
 	const form = useRef(null);
 	const inner = useRef(null);
 
-	const {styles, currentWord, speed, textDispatch} = useContext(TextContext);
+	const {styles, currentWord, speed, textDispatch, parsedText, currentIndex} = useContext(TextContext);
+	const {theme} = useContext(ThemeContext);
+
+	const history = useHistory();
+
+	const clickHandler = () => {
+		history.push('/current');
+	};
+
+	const keydownHandler = e => {
+		if (e.key.toUpperCase() === 'ESCAPE') {
+			history.push('/current');
+		}
+	}
+
+	useEventListener('click', clickHandler);
+	useEventListener('keydown', keydownHandler);
 
 	useInterval(() => {
 		textDispatch({type: CHANGE_CURRENT_WORD, payload: 1});
@@ -30,11 +49,16 @@ function CurrentWord() {
 	});
 
 	return (
-		<div ref={form} className="current-word" style={{...styles, marginTop: styles.marginTop + marginTop}}>
-			<div ref={inner} className="current-word__inner">
-				{currentWord.word.slice(0, currentWord.letterInd)}
-				<span ref={spanEl} className="current-word__letter">{currentWord.word[currentWord.letterInd]}</span>
-				{currentWord.word.slice(currentWord.letterInd + 1)}
+		<div style={{...styles, marginTop: 0, paddingTop: styles.marginTop + marginTop}}>
+			<div ref={form} className={`current-word ${theme}`}>
+				<div ref={inner} className="current-word__inner">
+					{currentWord.word.slice(0, currentWord.letterInd)}
+					<span ref={spanEl} className="current-word__letter">{currentWord.word[currentWord.letterInd]}</span>
+					{currentWord.word.slice(currentWord.letterInd + 1)}
+				</div>
+				<div className="current-word__left">
+					{parsedText.length - currentIndex - 1} words left
+				</div>
 			</div>
 		</div>
 	);
