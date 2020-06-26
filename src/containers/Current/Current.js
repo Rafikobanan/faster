@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import './Current.scss';
-import { ThemeContext } from '../../context/themeContext';
-import { TextContext } from '../../context/textContext';
+import { Context } from '../../context/context';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import { CHANGE_CURRENT_WORD } from '../../reducers/types';
 import useEventListener from '../../hooks/event.hook';
@@ -9,16 +8,15 @@ import useEventListener from '../../hooks/event.hook';
 const wordsToShow = 200;
 
 function Current() {
-	const {theme} = useContext(ThemeContext);
-	const {parsedText, currentIndex, currentWord, styles, textDispatch} = useContext(TextContext);
+	const {parsedText, currentIndex, currentWord, styles, dispatch, theme} = useContext(Context);
 
 	const keyDownHandler = e => {
 		switch (e.key.toUpperCase()) {
 			case 'ARROWLEFT':
-				textDispatch({type: CHANGE_CURRENT_WORD, payload: -1});
+				dispatch({type: CHANGE_CURRENT_WORD, payload: -1});
 				return;
 			case 'ARROWRIGHT':
-				textDispatch({type: CHANGE_CURRENT_WORD, payload: 1});
+				dispatch({type: CHANGE_CURRENT_WORD, payload: 1});
 				return;
 			default:
 				return;

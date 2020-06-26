@@ -1,7 +1,22 @@
-import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED, CHANGE_CURRENT_WORD } from "./types";
+import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED, CHANGE_CURRENT_WORD, INIT, TOGGLE_THEME } from "./types";
+import storage from "../storage/storage";
 
 export default function(state, action) {
 	switch (action.type) {
+		case INIT:
+			const data = storage();
+
+			if (data) {
+				return {
+					...state,
+					...data
+				};
+			}
+
+			return {
+				...state
+			};
+
 		case CHANGE_TEXT:
 			return {
 				...state,
@@ -85,6 +100,18 @@ export default function(state, action) {
 				...state,
 				currentWord: state.parsedText[currentIndex],
 				currentIndex
+			};
+
+		case TOGGLE_THEME:
+			if (!state.theme) {
+				return {
+					...state,
+					theme: 'dark'
+				};
+			}
+			return {
+				...state,
+				theme: ''
 			};
 
 		default: 

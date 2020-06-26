@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 import Icon from '../Icon/Icon';
-import { TextContext } from '../../context/textContext';
+import { Context } from '../../context/context';
 import Select from '../UI/Select/Select';
 import { CHANGE_FONT_SIZE, CHANGE_SPEED, CHANGE_FONT_FAMILY, CHANGE_POSITION } from '../../reducers/types';
-import { ThemeContext } from '../../context/themeContext';
 import './Toolbar.scss';
+import useHint from '../../hooks/Hint/hint.hook';
 
 function Toolbar({className=''}) {
-	const {textDispatch, speed} = useContext(TextContext);
-	const {theme} = useContext(ThemeContext);
+	const {dispatch, speed, theme} = useContext(Context);
 
 	const options = [
 		'Verdana',
@@ -19,39 +18,43 @@ function Toolbar({className=''}) {
 		'Arial'
 	];
 
+	useHint();
+
 	return (
 		<div className={`toolbar ${theme} ${className ? `${className}__toolbar` : ''}`}>
-			<div className="toolbar__tool" onClick={() => textDispatch({type: CHANGE_FONT_SIZE, payload: 2})}>
+			<div data-hint={"Increase font"} className="toolbar__tool" onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: 2})}>
 				<Icon className="toolbar__icon" icon="#increase-font" />
 			</div>
-			<div className="toolbar__tool" onClick={() => textDispatch({type: CHANGE_FONT_SIZE, payload: -2})}>
+			<div data-hint={"Decrease font"} className="toolbar__tool" onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: -2})}>
 				<Icon className="toolbar__icon" icon="#decrease-font" />
 			</div>
 			<input 
 				type="number" 
-				onChange={e => textDispatch({type: CHANGE_SPEED, payload: +e.target.value})} 
+				onChange={e => dispatch({type: CHANGE_SPEED, payload: +e.target.value})} 
 				value={speed} 
 				className="toolbar__tool toolbar__input"
+				data-hint={"Words per minute"}
 			/>
 			<Select 
 				className="toolbar__tool toolbar__select" 
-				onChange={e => textDispatch({type: CHANGE_FONT_FAMILY, payload: e.target.value})}
+				onChange={e => dispatch({type: CHANGE_FONT_FAMILY, payload: e.target.value})}
 				options={options}
+				hint={"Font"}
 			/>
-			<div className="toolbar__tool toolbar__arrows">
+			<div className="toolbar__tool toolbar__arrows" data-hint={"Text position"}>
 				<Icon 
 					className="toolbar__icon" 
 					icon="#arrow-top" 
-					onClick={() => textDispatch({type: CHANGE_POSITION, payload: -1})}
+					onClick={() => dispatch({type: CHANGE_POSITION, payload: -1})}
 				/>
 				<Icon 
 					className="toolbar__icon" 
 					icon="#arrow-top" 
 					style={{transform: 'rotate(180deg)'}} 
-					onClick={() => textDispatch({type: CHANGE_POSITION, payload: 1})}
+					onClick={() => dispatch({type: CHANGE_POSITION, payload: 1})}
 				/>
 			</div>
-			<div className="toolbar__tool">
+			<div className="toolbar__tool" data-hint={"Start"}>
 				<Icon 
 					className="toolbar__icon"
 					icon="#play"

@@ -6,5 +6,5 @@ export const CHANGE_FONT_FAMILY = 'CHANGE_FONT_FAMILY';
 export const CHANGE_POSITION = 'CHANGE_POSITION';
 export const CHANGE_SPEED = 'CHANGE_SPEED';
 export const CHANGE_CURRENT_WORD = 'CHANGE_WORD';
-
+export const INIT = 'INIT';
 export const TOGGLE_THEME = 'TOGGLE_THEME';

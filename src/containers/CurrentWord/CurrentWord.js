@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useContext } from 'react';
 import './CurrentWord.scss';
-import { TextContext } from '../../context/textContext';
+import { Context } from '../../context/context';
 import useInterval from '../../hooks/interval.hook';
 import { CHANGE_CURRENT_WORD } from '../../reducers/types';
-import { ThemeContext } from '../../context/themeContext';
 import { useHistory } from 'react-router-dom';
 import useEventListener from '../../hooks/event.hook';
 
@@ -14,8 +13,7 @@ function CurrentWord() {
 	const form = useRef(null);
 	const inner = useRef(null);
 
-	const {styles, currentWord, speed, textDispatch, parsedText, currentIndex} = useContext(TextContext);
-	const {theme} = useContext(ThemeContext);
+	const {styles, currentWord, speed, dispatch, parsedText, currentIndex, theme} = useContext(Context);
 
 	const history = useHistory();
 
@@ -33,7 +31,7 @@ function CurrentWord() {
 	useEventListener('keydown', keydownHandler);
 
 	useInterval(() => {
-		textDispatch({type: CHANGE_CURRENT_WORD, payload: 1});
+		dispatch({type: CHANGE_CURRENT_WORD, payload: 1});
 	}, calculateInterval(speed));
 
 	useEffect(() => {
