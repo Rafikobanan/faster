@@ -14,9 +14,11 @@ function Icon({onClick=null, className='', style={}, icon='', to=''}) {
 	}
 
 	return (
-		<svg className={className} onClick={onClick} style={style}>
-			<use xlinkHref={`${icon}`}></use>
-		</svg>
+		<div onClick={onClick}>
+			<svg className={className} style={style}>
+				<use xlinkHref={`${icon}`}></use>
+			</svg>
+		</div>
 	);
 }
 

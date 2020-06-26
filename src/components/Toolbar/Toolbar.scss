@@ -44,6 +44,10 @@
 			background-color: #f5f8fb!important;
 		}
 
+		& > div {
+			display: flex;
+		}
+
 		svg:hover {
 			background-color: #a7c4e1;
 		}
