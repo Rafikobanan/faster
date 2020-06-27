@@ -23,7 +23,9 @@ function App() {
 		speed: 300,
 		currentWord: {letterInd: 0, word: ''},
 		currentIndex: 0,
-		theme: ''
+		theme: '',
+		readWords: 0,
+		time: 0
 	});
 
 	useEffect(() => {
@@ -38,11 +40,10 @@ function App() {
 		<Context.Provider value={{...state, dispatch}}>
 			<Switch>
 				<Layout>
-					<Route path="/statistics" component={Statistics}/>
-					<Route path="/current" component={Current} />
-					<Route path="/current-word" component={CurrentWord} />
-					<Route path="/" exact component={Insert} />
-					<Redirect to="/" component={Insert} />
+					<Route exact path="/" component={Insert} />
+					<Route exact path="/statistics" component={Statistics}/>
+					<Route exact path="/current-word" component={CurrentWord} />
+					<Route exact path="/current" component={Current} />
 				</Layout>
 			</Switch>
 		</Context.Provider>

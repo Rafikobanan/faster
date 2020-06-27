@@ -1,0 +1,32 @@
+@import '../../colors';
+
+.recharts-wrapper {
+	margin: 0 auto;
+}
+
+
+.statistics {
+	&__title {
+		text-align: center;
+		font-size: 36px;
+		margin: 20px 0;
+	}
+}
+
+.dark.statistics {
+	& .statistics {
+		&__title {
+			color: $white;
+		}
+	}
+
+	& .recharts-wrapper {
+		& tspan {
+			fill: $white;
+		}
+
+		& .recharts-rectangle.recharts-tooltip-cursor {
+			fill: $lightgray;
+		}
+	}
+}

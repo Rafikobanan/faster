@@ -1,19 +1,24 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext, useMemo } from 'react';
 import './CurrentWord.scss';
 import { Context } from '../../context/context';
 import useInterval from '../../hooks/interval.hook';
-import { CHANGE_CURRENT_WORD } from '../../reducers/types';
+import { CHANGE_CURRENT_WORD, CHANGE_STATISTICS } from '../../reducers/types';
 import { useHistory } from 'react-router-dom';
 import useEventListener from '../../hooks/event.hook';
 
-const marginTop = 117;
-
 function CurrentWord() {
+	const {styles, currentWord, speed, dispatch, parsedText, currentIndex, theme} = useContext(Context);
+
 	const spanEl = useRef(null);
 	const form = useRef(null);
 	const inner = useRef(null);
 
-	const {styles, currentWord, speed, dispatch, parsedText, currentIndex, theme} = useContext(Context);
+	const marginTop = useMemo(() => 117, []);
+	const counter = useRef(1);
+	const interval = useMemo(() => {
+		return calculateInterval(speed);
+	}, [speed]);
+	const timer = useRef(interval / 1000);
 
 	const history = useHistory();
 
@@ -30,9 +35,19 @@ function CurrentWord() {
 	useEventListener('click', clickHandler);
 	useEventListener('keydown', keydownHandler);
 
+	useEffect(() => {
+		return () => {
+			dispatch({type: CHANGE_STATISTICS, payload: {readWords: counter.current, time: timer.current}});
+		};
+	}, []);
+
 	useInterval(() => {
+		if (currentIndex !== parsedText.length - 1) {
+			counter.current++;
+			timer.current += interval / 1000;
+		}
 		dispatch({type: CHANGE_CURRENT_WORD, payload: 1});
-	}, calculateInterval(speed));
+	}, interval);
 
 	useEffect(() => {
 		const spanCoords = spanEl.current.getBoundingClientRect();

@@ -8,3 +8,4 @@ export const CHANGE_SPEED = 'CHANGE_SPEED';
 export const CHANGE_CURRENT_WORD = 'CHANGE_WORD';
 export const INIT = 'INIT';
 export const TOGGLE_THEME = 'TOGGLE_THEME';
+export const CHANGE_STATISTICS = 'CHANGE_STATISTICS';
