@@ -1,12 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Menu.scss'
 import { Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
-import { TOGGLE_THEME } from '../../reducers/types';
+import { TOGGLE_THEME, CHANGE_LANGUAGE } from '../../reducers/types';
 import { Context } from '../../context/context';
+import useTranslate from '../../hooks/useTranslate/translate.hook';
 
 function Menu() {
-	const {theme, dispatch} = useContext(Context);
+	const {theme, language, dispatch} = useContext(Context);
+	const [isLanguagesHidden, setIsLanguagesHidden] = useState(true);
+
+	const t = useTranslate('Menu', language);
+
+	const menuLanguageCls = [
+		'menu-language',
+	];
+
+	if (!isLanguagesHidden) {
+		menuLanguageCls.push('menu-language_active')
+	}
+
+	const languageHandler = (language) => {
+		dispatch({type: CHANGE_LANGUAGE, payload: language});
+		setIsLanguagesHidden(true);
+	};
 
 	let lampIcon = '#dark-lamp';
 
@@ -15,9 +32,9 @@ function Menu() {
 	}
 
 	const links = [
-		{to: '/statistics', text: 'Statistics'},
-		{to: '/about', text: 'About'},
-		{to: '/auth', text: 'Auth'},
+		{to: '/statistics', text: t['Statistics']},
+		{to: '/about', text: t['About']},
+		{to: '/auth', text: t['Auth']},
 	];
 
 	return (
@@ -33,11 +50,15 @@ function Menu() {
 					<li className="menu__item">
 						<Icon className="menu__icon" onClick={() => dispatch({type: TOGGLE_THEME})} icon={lampIcon}/>
 					</li>
-					<li className="menu__item">
+					<li className="menu__item" onClick={() => setIsLanguagesHidden(!isLanguagesHidden)}>
 						<Icon className="menu__icon" icon="#global"/>
 					</li>
 				</ul>
 			</nav>
+			<ul className={menuLanguageCls.join(' ')}>
+				<li onClick={() => languageHandler('ru')} className="menu-language__item"><Icon className="menu-language__icon" icon="#russia"/></li>
+				<li onClick={() => languageHandler('en')} className="menu-language__item"><Icon className="menu-language__icon" icon="#uk"/></li>
+			</ul>
 		</div>
 	);
 }

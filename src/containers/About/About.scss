@@ -1,0 +1,20 @@
+@import '../../colors';
+
+.about {
+	&__title {
+		font-size: 40px;
+		margin: 20px 0;
+	}
+}
+
+.dark.about {
+	& .about {
+		&__paragraph {
+			color: $white;
+		}
+
+		&__title {
+			color: $white;
+		}
+	}
+}

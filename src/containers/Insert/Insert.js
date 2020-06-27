@@ -3,13 +3,16 @@ import './Insert.scss';
 import Button from '../../components/UI/Button/Button';
 import { Context } from '../../context/context';
 import { CHANGE_TEXT, PARSE_TEXT, REMOVE_TEXT } from '../../reducers/types';
+import useTranslate from '../../hooks/useTranslate/translate.hook';
 
 function Insert() {
-	const {text, dispatch, theme} = useContext(Context);
+	const {text, language, dispatch, theme} = useContext(Context);
+
+	const t = useTranslate('Insert', language);
 
 	return (
 		<div className={`insert ${theme}`}>
-			<div className="insert__hit">Insert Text:</div>
+			<div className="insert__hit">{t['Insert Text:']}</div>
 			<textarea 
 				className="insert__textarea" 
 				onChange={e => dispatch({type: CHANGE_TEXT, payload: e.target.value})} 
@@ -20,14 +23,14 @@ function Insert() {
 					className="insert__btn" 
 					to="/current" disabled={!text} 
 					onClick={() => dispatch({type: PARSE_TEXT})}
-				>Start
+				>{t['Start']}
 				</Button>
 				<Button 
 					className="insert__btn" 
 					theme="grey" 
 					onClick={() => dispatch({type: REMOVE_TEXT})} 
 					disabled={!text}
-				>Remove
+				>{t['Remove']}
 				</Button>
 			</div>
 		</div>

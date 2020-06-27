@@ -19,6 +19,7 @@
 	}
 
 	&__item {
+		position: relative;
 		display: inline-block;
 		margin-left: 30px;
 		font-size: 24px;
@@ -53,5 +54,27 @@
 				}
 			}
 		}
+	}
+}
+
+.menu-language {
+	position: absolute;
+	display: none;
+	right: 22px;
+	top: 50px;
+	width: 50px;
+
+	&__item {
+		margin-top: 10px;
+	}
+
+	&__icon {
+		height: 50px;
+		width: 50px;
+		cursor: pointer;
+	}
+
+	&_active {
+		display: block;
 	}
 }

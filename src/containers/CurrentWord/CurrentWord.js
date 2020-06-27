@@ -5,9 +5,12 @@ import useInterval from '../../hooks/interval.hook';
 import { CHANGE_CURRENT_WORD, CHANGE_STATISTICS } from '../../reducers/types';
 import { useHistory } from 'react-router-dom';
 import useEventListener from '../../hooks/event.hook';
+import useTranslate from '../../hooks/useTranslate/translate.hook';
 
 function CurrentWord() {
-	const {styles, currentWord, speed, dispatch, parsedText, currentIndex, theme} = useContext(Context);
+	const {styles, language, currentWord, speed, dispatch, parsedText, currentIndex, theme} = useContext(Context);
+
+	const t = useTranslate('CurrentWord', language);
 
 	const spanEl = useRef(null);
 	const form = useRef(null);
@@ -37,9 +40,10 @@ function CurrentWord() {
 
 	useEffect(() => {
 		return () => {
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			dispatch({type: CHANGE_STATISTICS, payload: {readWords: counter.current, time: timer.current}});
 		};
-	}, []);
+	}, [dispatch]);
 
 	useInterval(() => {
 		if (currentIndex !== parsedText.length - 1) {
@@ -70,7 +74,7 @@ function CurrentWord() {
 					{currentWord.word.slice(currentWord.letterInd + 1)}
 				</div>
 				<div className="current-word__left">
-					{parsedText.length - currentIndex - 1} words left
+					{parsedText.length - currentIndex - 1} {t['words left']}
 				</div>
 			</div>
 		</div>

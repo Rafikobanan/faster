@@ -14,12 +14,6 @@
 }
 
 .dark.statistics {
-	& .statistics {
-		&__title {
-			color: $white;
-		}
-	}
-
 	& .recharts-wrapper {
 		& tspan {
 			fill: $white;
@@ -27,6 +21,12 @@
 
 		& .recharts-rectangle.recharts-tooltip-cursor {
 			fill: $lightgray;
+		}
+	}
+
+	& .statistics {
+		&__title {
+			color: $white;
 		}
 	}
 }

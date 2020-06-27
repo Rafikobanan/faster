@@ -1,4 +1,4 @@
-import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED, CHANGE_CURRENT_WORD, INIT, TOGGLE_THEME, CHANGE_STATISTICS } from "./types";
+import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED, CHANGE_CURRENT_WORD, INIT, TOGGLE_THEME, CHANGE_STATISTICS, CHANGE_LANGUAGE } from "./types";
 import storage from "../storage/storage";
 
 export default function(state, action) {
@@ -120,6 +120,12 @@ export default function(state, action) {
 				...state,
 				readWords: state.readWords + action.payload.readWords,
 				time: state.time + action.payload.time
+			};
+
+		case CHANGE_LANGUAGE:
+			return {
+				...state,
+				language: action.payload
 			};
 
 		default: 

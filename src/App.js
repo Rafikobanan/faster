@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 import Insert from './containers/Insert/Insert';
 import Current from './containers/Current/Current';
@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import storage from './storage/storage';
 import { INIT } from './reducers/types';
 import Statistics from './containers/Statistics/Statistics';
+import About from './containers/About/About';
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, {
@@ -25,7 +26,8 @@ function App() {
 		currentIndex: 0,
 		theme: '',
 		readWords: 0,
-		time: 0
+		time: 0,
+		language: 'ru'
 	});
 
 	useEffect(() => {
@@ -44,6 +46,7 @@ function App() {
 					<Route exact path="/statistics" component={Statistics}/>
 					<Route exact path="/current-word" component={CurrentWord} />
 					<Route exact path="/current" component={Current} />
+					<Route exact path="/about" component={About} />
 				</Layout>
 			</Switch>
 		</Context.Provider>

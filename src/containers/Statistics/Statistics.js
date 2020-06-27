@@ -4,9 +4,12 @@ import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar } from 'recharts';
 import { useContext } from 'react';
 import { Context } from '../../context/context';
 import { useMemo } from 'react';
+import useTranslate from '../../hooks/useTranslate/translate.hook';
 
 function Statistics() {
-	const {readWords, time, theme} = useContext(Context);
+	const {readWords, language, time, theme} = useContext(Context);
+
+	const t = useTranslate('Statistics', language);
 
 	const normalDate = useMemo(() => {
 		const date = new Date();
@@ -37,7 +40,7 @@ function Statistics() {
 
 	return (
 		<div className={`statistics ${theme}`}>
-			<h2 className="statistics__title">Number of words read</h2>
+			<h2 className="statistics__title">{t["Number of words read"]}</h2>
 
 			<BarChart width={730} height={250} data={wordsData} maxBarSize={50}>
 				<CartesianGrid strokeDasharray="3 3" />
@@ -47,7 +50,8 @@ function Statistics() {
 				<Bar dataKey="words" fill="#82ca9d" />
 			</BarChart>
 
-			<h2 className="statistics__title">Reading time</h2>
+			<h2 className="statistics__title">{t["Reading time"]}</h2>
+			
 
 			<BarChart width={730} height={250} data={timeData} maxBarSize={50}>
 				<CartesianGrid strokeDasharray="3 3" />
