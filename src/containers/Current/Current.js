@@ -5,10 +5,9 @@ import Toolbar from '../../components/Toolbar/Toolbar';
 import { CHANGE_CURRENT_WORD } from '../../reducers/types';
 import useEventListener from '../../hooks/event.hook';
 
-const wordsToShow = 200;
-
 function Current() {
 	const {parsedText, currentIndex, currentWord, styles, dispatch, theme} = useContext(Context);
+	const wordsToShow = 200;
 
 	const keyDownHandler = e => {
 		switch (e.key.toUpperCase()) {
