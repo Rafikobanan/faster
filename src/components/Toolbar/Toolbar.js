@@ -5,9 +5,14 @@ import Select from '../UI/Select/Select';
 import { CHANGE_FONT_SIZE, CHANGE_SPEED, CHANGE_FONT_FAMILY, CHANGE_POSITION } from '../../reducers/types';
 import './Toolbar.scss';
 import useHint from '../../hooks/Hint/hint.hook';
+import useTranslate from '../../hooks/useTranslate/translate.hook';
 
 function Toolbar({className=''}) {
-	const {dispatch, speed, theme} = useContext(Context);
+	const {dispatch, language, speed, theme} = useContext(Context);
+
+	const t = useTranslate('Toolbar', language);
+
+	useHint();
 
 	const options = [
 		'Verdana',
@@ -18,14 +23,12 @@ function Toolbar({className=''}) {
 		'Arial'
 	];
 
-	useHint();
-
 	return (
 		<div className={`toolbar ${theme} ${className ? `${className}__toolbar` : ''}`}>
-			<div data-hint={"Increase font"} className="toolbar__tool" onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: 2})}>
+			<div data-hint={t["Increase font"]} className="toolbar__tool" onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: 2})}>
 				<Icon className="toolbar__icon" icon="#increase-font" />
 			</div>
-			<div data-hint={"Decrease font"} className="toolbar__tool" onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: -2})}>
+			<div data-hint={t["Decrease font"]} className="toolbar__tool" onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: -2})}>
 				<Icon className="toolbar__icon" icon="#decrease-font" />
 			</div>
 			<input 
@@ -33,15 +36,15 @@ function Toolbar({className=''}) {
 				onChange={e => dispatch({type: CHANGE_SPEED, payload: +e.target.value})} 
 				value={speed} 
 				className="toolbar__tool toolbar__input"
-				data-hint={"Words per minute"}
+				data-hint={t["Words per minute"]}
 			/>
 			<Select 
 				className="toolbar__tool toolbar__select" 
 				onChange={e => dispatch({type: CHANGE_FONT_FAMILY, payload: e.target.value})}
 				options={options}
-				hint={"Font"}
+				hint={t["Font"]}
 			/>
-			<div className="toolbar__tool toolbar__arrows" data-hint={"Text position"}>
+			<div className="toolbar__tool toolbar__arrows" data-hint={t["Text position"]}>
 				<Icon 
 					className="toolbar__icon" 
 					icon="#arrow-top" 
@@ -54,7 +57,7 @@ function Toolbar({className=''}) {
 					onClick={() => dispatch({type: CHANGE_POSITION, payload: 1})}
 				/>
 			</div>
-			<div className="toolbar__tool" data-hint={"Start"}>
+			<div className="toolbar__tool" data-hint={t["Start"]}>
 				<Icon 
 					className="toolbar__icon"
 					icon="#play"
