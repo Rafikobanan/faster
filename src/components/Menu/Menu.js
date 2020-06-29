@@ -1,13 +1,18 @@
-import React, { useContext, useState } from 'react';
-import './Menu.scss'
-import { Link } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import './Menu.scss';
+import {Link} from 'react-router-dom';
 import Icon from '../Icon/Icon';
-import { TOGGLE_THEME, CHANGE_LANGUAGE } from '../../reducers/types';
-import { Context } from '../../context/context';
+import {TOGGLE_THEME, CHANGE_LANGUAGE} from '../../reducers/types';
+import {Context} from '../../context/context';
 import useTranslate from '../../hooks/useTranslate/translate.hook';
 
 function Menu() {
-	const {theme, language, dispatch} = useContext(Context);
+	const {
+		dispatch,
+		theme,
+		language,
+	} = useContext(Context);
+
 	const [isLanguagesHidden, setIsLanguagesHidden] = useState(true);
 
 	const t = useTranslate('Menu', language);
@@ -17,7 +22,7 @@ function Menu() {
 	];
 
 	if (!isLanguagesHidden) {
-		menuLanguageCls.push('menu-language_active')
+		menuLanguageCls.push('menu-language_active');
 	}
 
 	const languageHandler = (language) => {
@@ -48,16 +53,33 @@ function Menu() {
 						</li>
 					))}
 					<li className="menu__item">
-						<Icon className="menu__icon" onClick={() => dispatch({type: TOGGLE_THEME})} icon={lampIcon}/>
+						<Icon
+							className="menu__icon"
+							onClick={() => dispatch({type: TOGGLE_THEME})}
+							icon={lampIcon}
+						/>
 					</li>
-					<li className="menu__item" onClick={() => setIsLanguagesHidden(!isLanguagesHidden)}>
+					<li
+						className="menu__item"
+						onClick={() => setIsLanguagesHidden(!isLanguagesHidden)}
+					>
 						<Icon className="menu__icon" icon="#global"/>
 					</li>
 				</ul>
 			</nav>
 			<ul className={menuLanguageCls.join(' ')}>
-				<li onClick={() => languageHandler('ru')} className="menu-language__item"><Icon className="menu-language__icon" icon="#russia"/></li>
-				<li onClick={() => languageHandler('en')} className="menu-language__item"><Icon className="menu-language__icon" icon="#uk"/></li>
+				<li
+					onClick={() => languageHandler('ru')}
+					className="menu-language__item"
+				>
+					<Icon className="menu-language__icon" icon="#russia"/>
+				</li>
+				<li
+					onClick={() => languageHandler('en')}
+					className="menu-language__item"
+				>
+					<Icon className="menu-language__icon" icon="#uk"/>
+				</li>
 			</ul>
 		</div>
 	);

@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
-import { translations } from './translations';
+import {useMemo} from 'react';
+import {translations} from './translations';
 
 function useTranslate(component, lang) {
-	const translatedText = useMemo(() => translate(translations[component], lang), [component, lang]);
+	const translatedText = useMemo(() => translate(translations[component], lang),
+		[component, lang]);
 
 	return translatedText;
 }
@@ -10,8 +11,8 @@ function useTranslate(component, lang) {
 function translate(data, lang) {
 	const temp = {};
 
-	for (let key in data) {
-		if (data.hasOwnProperty(key)) {
+	for (const key in data) {
+		if (Object.prototype.hasOwnProperty.call(data, key)) {
 			temp[key] = data[key][lang];
 		}
 	}

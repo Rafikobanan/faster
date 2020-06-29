@@ -1,7 +1,7 @@
 import './Hint.scss';
 import useEventListener from '../event.hook';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import {useRef} from 'react';
+import {useEffect} from 'react';
 
 function removeHint(ref) {
 	if (ref.current) {
@@ -19,7 +19,7 @@ function useHint() {
 		};
 	}, []);
 
-	useEventListener('mouseover', e => {
+	useEventListener('mouseover', (e) => {
 		const target = e.target.closest('[data-hint]');
 
 		if (!target) return;
@@ -41,13 +41,13 @@ function useHint() {
 
 		if (left < 0) left = 0;
 
-		let top = coords.top + target.offsetHeight + 5;
-		
+		const top = coords.top + target.offsetHeight + 5;
+
 		hint.style.left = left + 'px';
 		hint.style.top = top + 'px';
 	});
 
-	useEventListener('mouseout', e => {
+	useEventListener('mouseout', (e) => {
 		removeHint(hintEl);
 	});
 }

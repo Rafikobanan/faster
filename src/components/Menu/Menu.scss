@@ -42,19 +42,6 @@
 		width: 35px;
 		height: 35px;
 	}
-
-	&.dark {
-		background-color: $lightdark;
-		color: $white;
-
-		& .menu {
-			&__item {
-				&  svg {
-					fill: $white;
-				}
-			}
-		}
-	}
 }
 
 .menu-language {
@@ -76,5 +63,18 @@
 
 	&_active {
 		display: block;
+	}
+}
+
+.menu.dark {
+	background-color: $lightdark;
+	color: $white;
+
+	& .menu {
+		&__item {
+			&  svg {
+				fill: $white;
+			}
+		}
 	}
 }

@@ -28,19 +28,19 @@
 			margin-left: 6px;
 		}
 	}
+}
 
-	&.dark {
-		color: $white;
+.insert.dark {
+	color: $white;
 
-		& .insert {
-			&__textarea {
-				background-color: #444950;
-				color: $white;
+	& .insert {
+		&__textarea {
+			background-color: #444950;
+			color: $white;
 
-				&:focus {
-					border-color: red;
-					box-shadow: 0 0 0 3px rgba(255, 0, 0, .1);
-				}
+			&:focus {
+				border-color: red;
+				box-shadow: 0 0 0 3px rgba(255, 0, 0, .1);
 			}
 		}
 	}

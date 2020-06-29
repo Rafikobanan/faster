@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const translations = {
 	'Menu': {
 		'Statistics': {
@@ -10,7 +11,7 @@ export const translations = {
 		},
 		'Auth': {
 			en: 'Auth',
-			ru: 'Авторизация'
+			ru: 'Авторизация',
 		},
 	},
 
@@ -25,20 +26,20 @@ export const translations = {
 		},
 		'Words per minute': {
 			en: 'Words per minute',
-			ru: 'Слов в минуту'
+			ru: 'Слов в минуту',
 		},
 		'Font': {
 			en: 'Font',
-			ru: 'Шрифт'
+			ru: 'Шрифт',
 		},
 		'Text position': {
 			en: 'Text position',
-			ru: 'Позиция текста'
+			ru: 'Позиция текста',
 		},
 		'Start': {
 			en: 'Start',
-			ru: 'Старт'
-		}
+			ru: 'Старт',
+		},
 	},
 
 	'About': {
@@ -52,56 +53,56 @@ export const translations = {
 		},
 		'How it works?': {
 			en: 'How it works?',
-			ru: 'Как это работает?'
+			ru: 'Как это работает?',
 		},
 		'This is an application to increase reading speed.': {
 			en: 'This is an application to increase reading speed.',
-			ru: 'Это приложение для увеличения скорости чтения'
+			ru: 'Это приложение для увеличения скорости чтения',
 		},
 		'Just paste the text and run. When reading, you will not spend time on eye movement and regression.': {
 			en: 'Just paste the text and run. When reading, you will not spend time on eye movement and regression.',
-			ru: 'Просто вставьте текст и запустите. При чтении вы не будете тратить время на движение глаз и регрессию.'
+			ru: 'Просто вставьте текст и запустите. При чтении вы не будете тратить время на движение глаз и регрессию.',
 		},
 		'How much will this help me?': {
 			en: 'How much will this help me?',
-			ru: 'Насколько сильно мне это поможет?'
+			ru: 'Насколько сильно мне это поможет?',
 		},
 		'You can increase the speed of reading by 33% without a significant loss of understanding of the text.': {
 			en: 'You can increase the speed of reading by 33% without a significant loss of understanding of the text.',
-			ru: 'Вы сможете увеличить скорость чтения на 33% без значительной потери понимания текста.'
+			ru: 'Вы сможете увеличить скорость чтения на 33% без значительной потери понимания текста.',
 		},
 	},
 
 	'CurrentWord': {
 		'words left': {
 			en: 'words left',
-			ru: 'слов осталось'
-		}
+			ru: 'слов осталось',
+		},
 	},
 
 	'Insert': {
 		'Insert Text:': {
 			en: 'Insert Text:',
-			ru: 'Вставьте текст:'
+			ru: 'Вставьте текст:',
 		},
 		'Start': {
 			en: 'Start',
-			ru: 'Старт'
+			ru: 'Старт',
 		},
 		'Remove': {
 			en: 'Remove',
-			ru: 'Стереть'
-		}
+			ru: 'Стереть',
+		},
 	},
 
 	'Statistics': {
 		'Number of words read': {
 			en: 'Number of words read',
-			ru: 'Количество прочитанных слов'
+			ru: 'Количество прочитанных слов',
 		},
 		'Reading time': {
 			en: 'Reading time',
-			ru: 'Время чтения'
-		}
-	}
+			ru: 'Время чтения',
+		},
+	},
 };

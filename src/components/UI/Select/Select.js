@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Select({options=[], onChange=null, className='', hint=''}) {
+function Select({options = [], onChange = null, className = '', hint = ''}) {
 	return (
 		<select className={className} onChange={onChange} data-hint={hint}>
 			{options.map((opt, ind) => (

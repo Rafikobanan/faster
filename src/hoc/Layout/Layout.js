@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import './Layout.scss'
+import React, {useContext} from 'react';
+import './Layout.scss';
 import Menu from '../../components/Menu/Menu';
-import { Context } from '../../context/context';
+import {Context} from '../../context/context';
 
 function Layout({children}) {
 	const {theme} = useContext(Context);

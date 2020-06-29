@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Icon.scss';
 
-function Icon({onClick=null, className='', style={}, icon='', to=''}) {
+function Icon({
+	onClick = null,
+	className = '',
+	style = {},
+	icon = '',
+	to = '',
+}) {
 	if (to) {
 		return (
 			<Link to={to} className="svg-link">

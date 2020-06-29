@@ -1,5 +1,19 @@
-import { CHANGE_TEXT, REMOVE_TEXT, PARSE_TEXT, CHANGE_FONT_SIZE, CHANGE_FONT_FAMILY, CHANGE_POSITION, CHANGE_SPEED, CHANGE_CURRENT_WORD, INIT, TOGGLE_THEME, CHANGE_STATISTICS, CHANGE_LANGUAGE } from "./types";
-import storage from "../storage/storage";
+/* eslint-disable no-case-declarations */
+import {
+	CHANGE_TEXT,
+	REMOVE_TEXT,
+	PARSE_TEXT,
+	CHANGE_FONT_SIZE,
+	CHANGE_FONT_FAMILY,
+	CHANGE_POSITION,
+	CHANGE_SPEED,
+	CHANGE_CURRENT_WORD,
+	INIT,
+	TOGGLE_THEME,
+	CHANGE_STATISTICS,
+	CHANGE_LANGUAGE,
+} from './types';
+import storage from '../storage/storage';
 
 export default function(state, action) {
 	switch (action.type) {
@@ -9,42 +23,45 @@ export default function(state, action) {
 			if (data) {
 				return {
 					...state,
-					...data
+					...data,
 				};
 			}
 
 			return {
-				...state
+				...state,
 			};
 
 		case CHANGE_TEXT:
 			return {
 				...state,
-				text: action.payload
+				text: action.payload,
 			};
 
 		case REMOVE_TEXT:
 			return {
 				...state,
-				text: ''
+				text: '',
 			};
 
 		case PARSE_TEXT:
-			const parsedText = state.text.split(/[\s]/).filter(word => word).map(word => {
-				const length = word.length;
-				const letterInd = Math.round(length / 4);
+			const parsedText = state.text
+				.split(/[\s]/)
+				.filter((word) => word)
+				.map((word) => {
+					const length = word.length;
+					const letterInd = Math.round(length / 4);
 
-				return {
-					letterInd,
-					word
-				};
-			});
+					return {
+						letterInd,
+						word,
+					};
+				});
 
 			return {
 				...state,
 				parsedText,
 				currentWord: parsedText[0],
-				currentIndex: 0
+				currentIndex: 0,
 			};
 
 		case CHANGE_FONT_SIZE:
@@ -52,8 +69,8 @@ export default function(state, action) {
 				...state,
 				styles: {
 					...state.styles,
-					fontSize: state.styles.fontSize + action.payload
-				}
+					fontSize: state.styles.fontSize + action.payload,
+				},
 			};
 
 		case CHANGE_FONT_FAMILY:
@@ -61,8 +78,8 @@ export default function(state, action) {
 				...state,
 				styles: {
 					...state.styles,
-					fontFamily: action.payload
-				}
+					fontFamily: action.payload,
+				},
 			};
 
 		case CHANGE_POSITION:
@@ -72,21 +89,21 @@ export default function(state, action) {
 				...state,
 				styles: {
 					...state.styles,
-					marginTop: state.styles.marginTop + 60 * action.payload
-				}
+					marginTop: state.styles.marginTop + 60 * action.payload,
+				},
 			};
 
 		case CHANGE_SPEED:
 			if (action.payload <= 0) {
 				return {
 					...state,
-					speed: 1
+					speed: 1,
 				};
 			}
 
 			return {
 				...state,
-				speed: action.payload
+				speed: action.payload,
 			};
 
 		case CHANGE_CURRENT_WORD:
@@ -95,40 +112,42 @@ export default function(state, action) {
 
 			if (currentIndex < 0) currentIndex = 0;
 
-			if (currentIndex > parsedTextLastIndex) currentIndex = parsedTextLastIndex;
+			if (currentIndex > parsedTextLastIndex) {
+				currentIndex = parsedTextLastIndex;
+			}
 
 			return {
 				...state,
 				currentWord: state.parsedText[currentIndex],
-				currentIndex
+				currentIndex,
 			};
 
 		case TOGGLE_THEME:
 			if (!state.theme) {
 				return {
 					...state,
-					theme: 'dark'
+					theme: 'dark',
 				};
 			}
 			return {
 				...state,
-				theme: ''
+				theme: '',
 			};
 
 		case CHANGE_STATISTICS:
 			return {
 				...state,
 				readWords: state.readWords + action.payload.readWords,
-				time: state.time + action.payload.time
+				time: state.time + action.payload.time,
 			};
 
 		case CHANGE_LANGUAGE:
 			return {
 				...state,
-				language: action.payload
+				language: action.payload,
 			};
 
-		default: 
+		default:
 			return state;
 	}
-};
+}

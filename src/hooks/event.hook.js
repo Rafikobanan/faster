@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 
-function useEventListener(eventName, handler, element = window){
+function useEventListener(eventName, handler, element = window) {
   const savedHandler = useRef();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function useEventListener(eventName, handler, element = window){
       const isSupported = element && element.addEventListener;
       if (!isSupported) return;
 
-      const eventListener = event => savedHandler.current(event);
+      const eventListener = (event) => savedHandler.current(event);
 
       element.addEventListener(eventName, eventListener);
 
@@ -20,8 +20,8 @@ function useEventListener(eventName, handler, element = window){
         element.removeEventListener(eventName, eventListener);
       };
     },
-    [eventName, element]
+    [eventName, element],
   );
-};
+}
 
 export default useEventListener;
