@@ -51,6 +51,7 @@ function CurrentWord() {
 		return () => {
 			dispatch({
 				type: CHANGE_STATISTICS,
+				// eslint-disable-next-line react-hooks/exhaustive-deps
 				payload: {readWords: counter.current, time: timer.current},
 			});
 		};
