@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const translations = {
 	'Menu': {
 		'Statistics': {
@@ -105,4 +104,47 @@ export const translations = {
 			ru: 'Время чтения',
 		},
 	},
+
+	'Auth': {
+		'Authorization': {
+			en: 'Authorization',
+			ru: 'Авторизация',
+		},
+		'Email': {
+			en: 'Email',
+			ru: 'Email',
+		},
+		'Password': {
+			en: 'Password',
+			ru: 'Пароль',
+		},
+		'Log in': {
+			en: 'Log in',
+			ru: 'Войти',
+		},
+		'Sign up': {
+			en: 'Sign up',
+			ru: 'Зарегистрироваться',
+		},
+		'Registration': {
+			en: 'Registration',
+			ru: 'Регистрация',
+		},
+		'Successful registration': {
+			en: 'Successful registration',
+			ru: 'Успешная регистрация',
+		},
+		'Minimum password length is 6 characters': {
+			en: 'Minimum password length is 6 characters',
+			ru: 'Минимальная длина пароля - 6 символов',
+		},
+		'Successful authorization': {
+			en: 'Successful authorization',
+			ru: 'Успешная авторизация',
+		},
+		'You are already logged in': {
+			en: 'You are already logged in',
+			ru: 'Вы уже авторизованы',
+		}
+	}
 };
