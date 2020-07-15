@@ -1,0 +1,55 @@
+@import '../../colors';
+
+.auth {
+	display: flex;
+	justify-content: center;
+	padding-top: 30px;
+}
+
+.auth-field {
+	padding: 15px 20px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+	min-width: 271px;
+
+	&__title {
+		margin-bottom: 10px;
+	}
+
+	&__input {
+		display: block;
+		border: 1px solid $main;
+		padding: 10px;
+		margin-bottom: 10px;
+		width: 100%;
+	}
+
+	&__button {
+		& + & {
+			margin-left: 10px;
+		}
+	}
+
+	&__output {
+		margin-top: 5px;
+		font-size: 12px;
+		color: red;
+	}
+
+	&__text {
+		display: inline-block;
+		font-size: 10px;
+		margin-left: 5px;
+		color: blue;
+		cursor: pointer;
+	}
+}
+
+.auth-auth {
+	text-align: center;
+	margin-top: 20px;
+
+	&__text {
+		display: inline-block;
+		margin-right: 10px;
+	}
+}

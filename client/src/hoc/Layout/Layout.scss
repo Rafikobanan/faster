@@ -1,0 +1,131 @@
+@import '../../colors';
+
+.wrapper {
+	height: inherit;
+	min-height: inherit;
+	overflow-x: hidden;
+}
+
+// dark theme
+.wrapper.dark {
+	background-color: $dark;
+
+	.menu {
+		background-color: $lightdark;
+		color: $white;
+		&__item {
+			&  svg {
+				fill: $white;
+			}
+		}
+
+		&__nav {
+			background-color: $main;
+		}
+
+		&__hamburger {
+			span {
+				background-color: $white;
+			}
+		}
+	}
+
+	.about {
+		&__paragraph {
+			color: $white;
+		}
+
+		&__title {
+			color: $white;
+		}
+	}
+
+	.auth-field {
+		color: $white;
+		box-shadow: none;
+	}
+
+	.auth-auth {
+		color: $white;
+	}
+
+	.current__word {
+		color: $white;
+	}
+
+	.current-word {
+		color: $white;
+		border-color: $lightgray;
+	
+		&::before {
+			border-top-color: $lightgray;
+		}
+	
+		&::after {
+			border-bottom-color: $lightgray;
+		}
+	}
+
+	.insert {
+		color: $white;
+
+		&__textarea {
+			background-color: #444950;
+			color: $white;
+
+			&:focus {
+				border-color: red;
+				box-shadow: 0 0 0 3px rgba(255, 0, 0, .1);
+			}
+		}
+	}
+
+	.statistics {
+		& .recharts-wrapper {
+			& tspan {
+				fill: $white;
+			}
+	
+			& .recharts-rectangle.recharts-tooltip-cursor {
+				fill: $lightgray;
+			}
+		}
+	
+		& .statistics {
+			&__title {
+				color: $white;
+			}
+		}
+	}
+
+	.toolbar {
+		border: 1px solid $white;
+
+		&__tool {
+			background-color: $lightdark;
+			color: $white;
+		
+			&:hover {
+				background-color: #8e949e!important;
+			}
+		}
+		
+		&__icon {
+			fill: $white;
+		}
+		
+		&__tool + .toolbar__tool {
+			border-left: 1px solid $white;
+		}
+		
+		&__arrows {
+			&:hover {
+				background-color: $lightdark!important;
+			}
+		
+			svg:hover {
+				background-color: #8e949e!important;
+			}
+		}
+	}
+}

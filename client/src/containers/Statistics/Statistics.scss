@@ -1,0 +1,13 @@
+@import '../../colors';
+
+.recharts-wrapper {
+	margin: 0 auto;
+}
+
+.statistics {
+	&__title {
+		text-align: center;
+		font-size: 36px;
+		margin: 20px 0;
+	}
+}

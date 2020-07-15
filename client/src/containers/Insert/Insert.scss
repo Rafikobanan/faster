@@ -1,0 +1,39 @@
+@import '../../colors';
+
+.insert {
+	padding: 30px 0;
+
+	&__hit {
+		margin-bottom: 15px;
+		font-weight: 500;
+	}
+
+	&__textarea {
+		width: 100%;
+		min-height: 300px;
+		border: 1px solid $lightgray;
+		padding: 15px;
+		resize: vertical;
+		font-size: 16px;
+		margin-bottom: 8px;
+
+		&:focus {
+			border-color: $blue;
+			box-shadow: 0 0 0 3px rgba(0, 144, 217, .1);
+		}
+	}
+
+	&__btn {
+		& + & {
+			margin-left: 6px;
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.insert {
+		&__textarea {
+			padding: 5px;
+		}
+	}
+}
