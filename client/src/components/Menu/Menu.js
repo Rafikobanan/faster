@@ -18,6 +18,8 @@ function Menu() {
 
 	const t = useTranslate('Menu', language);
 
+	const pathname = window.location.pathname;
+
 	const menuLanguageCls = [
 		'menu-language',
 	];
@@ -53,7 +55,14 @@ function Menu() {
 
 	return (
 		<div className={'menu'}>
-			<div className="menu__logo"><Link onClick={() => setIsNavActive(false)} to="/">Faster</Link></div>
+			<div className="menu__logo">
+				<Link
+					onClick={() => setIsNavActive(false)}
+					to="/"
+				>
+					{pathname === '/' ? 'Faster' : t['To Home']}
+				</Link>
+			</div>
 			<nav className={navCls.join(' ')}>
 				<ul className="menu__list">
 					{links.map((link, ind) => (

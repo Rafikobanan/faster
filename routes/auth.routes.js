@@ -34,7 +34,7 @@ router.post(
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-    const user = new User({ email, password: hashedPassword, statistics: {} });
+		const user = new User({ email, password: hashedPassword, data: {} });
 
     await user.save();
 
@@ -47,7 +47,7 @@ router.post(
     res.json({ token });
 
   } catch (e) {
-    res.json({ message: 'Something went wrong' });
+    res.status(500).json({ message: 'Something went wrong' });
   }
 })
 
@@ -85,13 +85,13 @@ router.post(
     const token = jwt.sign(
       { userId: user.id },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    )
+      { expiresIn: '1d' }
+    );
 
-    res.json({ token, statistics: user.statistics })
+		res.json({ token, data: user.data })
 
   } catch (e) {
-    res.json({ message: 'Something went wrong' })
+    res.status(500).json({ message: 'Something went wrong' })
   }
 })
 

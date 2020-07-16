@@ -9,10 +9,11 @@
 // dark theme
 .wrapper.dark {
 	background-color: $dark;
+	color: $white;
 
 	.menu {
 		background-color: $lightdark;
-		color: $white;
+
 		&__item {
 			&  svg {
 				fill: $white;
@@ -30,23 +31,8 @@
 		}
 	}
 
-	.about {
-		&__paragraph {
-			color: $white;
-		}
-
-		&__title {
-			color: $white;
-		}
-	}
-
 	.auth-field {
-		color: $white;
 		box-shadow: none;
-	}
-
-	.auth-auth {
-		color: $white;
 	}
 
 	.current__word {
@@ -54,7 +40,7 @@
 	}
 
 	.current-word {
-		color: $white;
+
 		border-color: $lightgray;
 	
 		&::before {
@@ -67,8 +53,6 @@
 	}
 
 	.insert {
-		color: $white;
-
 		&__textarea {
 			background-color: #444950;
 			color: $white;
@@ -90,11 +74,9 @@
 				fill: $lightgray;
 			}
 		}
-	
-		& .statistics {
-			&__title {
-				color: $white;
-			}
+
+		& .recharts-tooltip-wrapper {
+			color: $main;
 		}
 	}
 
