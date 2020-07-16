@@ -10,6 +10,13 @@ function Insert() {
 
 	const t = useTranslate('Insert', language);
 
+	const clickClipboardHandler = () => {
+		navigator.clipboard.readText()
+			.then(text => {
+				dispatch({type: CHANGE_TEXT, payload: text})
+			});
+	};
+
 	return (
 		<div className={'insert'}>
 			<div className="insert__hit">{t['Insert Text:']}</div>
@@ -23,14 +30,23 @@ function Insert() {
 					className="insert__btn"
 					to="/current" disabled={!text}
 					onClick={() => dispatch({type: PARSE_TEXT})}
-				>{t['Start']}
+				>
+					{t['Start']}
+				</Button>
+				<Button
+					className="insert__btn"
+					theme="grey"
+					onClick={clickClipboardHandler}
+				>
+					{t['Paste']}
 				</Button>
 				<Button
 					className="insert__btn"
 					theme="grey"
 					onClick={() => dispatch({type: REMOVE_TEXT})}
 					disabled={!text}
-				>{t['Remove']}
+				>
+					{t['Remove']}
 				</Button>
 			</div>
 		</div>

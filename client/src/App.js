@@ -8,12 +8,13 @@ import reducer from './reducers/reducer';
 import CurrentWord from './containers/CurrentWord/CurrentWord';
 import {useEffect} from 'react';
 import storage from './storage/storage';
-import {INIT} from './reducers/types';
+import {INIT, CHANGE_LANGUAGE, SERVER_INIT} from './reducers/types';
 import Statistics from './containers/Statistics/Statistics';
 import About from './containers/About/About';
 import Auth from './containers/Auth/Auth';
 import { useAuth } from './hooks/auth.hook';
 import useHttp from './hooks/http.hook';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, {
@@ -36,26 +37,39 @@ function App() {
 	const {request} = useHttp();
 
 	useEffect(() => {
+		async function fetchData() {
+			try {
+				const data = await request(
+					'/api/data',
+					'GET',
+					null,
+					{Authorization: `Bearer ${auth.token}`}
+				);
+				dispatch({type: SERVER_INIT, payload: data});
+			} catch (e) {
+				console.log(e);
+				auth.logout();
+			}
+		}
+
+		if (navigator.language !== 'ru') {
+			dispatch({type: CHANGE_LANGUAGE, payload: 'en'});
+		}
+
 		dispatch({type: INIT});
-	}, []);
+
+		if (auth.token) {
+			fetchData();
+		}
+	}, [auth.token]);
+	
 
 	useEffect(() => {
 		storage(state);
 	}, [state]);
 
-	useEffect(() => {
-		if (auth.token) {
-			request(
-				'/api/statistics',
-				'POST', 
-				state.statistics,
-				{Authorization: `Bearer ${auth.token}`}
-			);
-		}
-	}, [state.statistics, auth.token]);
-
   return (
-		<Context.Provider value={{...state, dispatch, auth}}>
+		<Context.Provider value={{...state, state, dispatch, auth, request}}>
 			<Switch>
 				<Layout>
 					<Route exact path="/" component={Insert} />

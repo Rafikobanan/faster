@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json({extended: true}));
 app.use('/api/auth', require('./routes/auth.routes'));
-app.use('/api', require('./routes/statistics.routes'));
+app.use('/api', require('./routes/data.routes'));
 
 app.use('/', express.static(path.join(__dirname, 'client', 'build')))
 

@@ -12,6 +12,10 @@ export const translations = {
 			en: 'Auth',
 			ru: 'Авторизация',
 		},
+		'To Home': {
+			en: 'To Home',
+			ru: 'На главную'
+		}
 	},
 
 	'Toolbar': {
@@ -92,6 +96,10 @@ export const translations = {
 			en: 'Remove',
 			ru: 'Стереть',
 		},
+		'Paste': {
+			en: 'Paste',
+			ru: 'Вставить'
+		}
 	},
 
 	'Statistics': {
@@ -103,6 +111,10 @@ export const translations = {
 			en: 'Reading time',
 			ru: 'Время чтения',
 		},
+		'Do you want statistics to be saved? Log in.': {
+			en: 'Do you want statistics to be saved? Log in.',
+			ru: 'Хотите чтобы статистика сохранялась? Авторизуйся.'
+		}
 	},
 
 	'Auth': {
@@ -142,17 +154,28 @@ export const translations = {
 			en: 'Minimum password length is 6 characters',
 			ru: 'Минимальная длина пароля - 6 символов',
 		},
+		'Incorrect email': {
+			en: 'Incorrect email',
+			ru: 'Некорректный email'
+		},
 		'Successful authorization': {
 			en: 'Successful authorization',
 			ru: 'Успешная авторизация',
 		},
-		'You are already logged in': {
-			en: 'You are already logged in',
-			ru: 'Вы уже авторизованы',
+		'You are logged in.': {
+			en: 'You are logged in.',
+			ru: 'Вы авторизовались',
 		},
 		'Already have an account': {
 			en: 'Already have an account',
 			ru: 'Уже есть аккаунт',
+		}
+	},
+
+	'Cloud': {
+		'Data saved successfully': {
+			en: 'Data saved successfully',
+			ru: 'Данные успешно сохранены'
 		}
 	}
 };

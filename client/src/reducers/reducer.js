@@ -12,7 +12,7 @@ import {
 	TOGGLE_THEME,
 	CHANGE_STATISTICS,
 	CHANGE_LANGUAGE,
-	SET_STATISTICS,
+	SERVER_INIT,
 } from './types';
 import storage from '../storage/storage';
 import getNormalDate from '../functions/getNormalDate';
@@ -32,6 +32,12 @@ export default function(state, action) {
 
 			return {
 				...state,
+			};
+
+		case SERVER_INIT:
+			return {
+				...state,
+				...action.payload
 			};
 
 		case CHANGE_TEXT:
@@ -156,12 +162,6 @@ export default function(state, action) {
 			return {
 				...state,
 				statistics,
-			};
-
-		case SET_STATISTICS:
-			return {
-				...state,
-				statistics: action.payload,
 			};
 
 		case CHANGE_LANGUAGE:

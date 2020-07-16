@@ -8,7 +8,7 @@ import useTranslate from '../../hooks/useTranslate/translate.hook';
 import getNormalDate from '../../functions/getNormalDate';
 
 function Statistics() {
-	const {statistics, language} = useContext(Context);
+	const {statistics, language, auth} = useContext(Context);
 
 	const t = useTranslate('Statistics', language);
 
@@ -48,29 +48,33 @@ function Statistics() {
 
 	return (
 		<div className={'statistics'}>
+			{!auth.token ? <div className="statistics__unauth">
+				{t['Do you want statistics to be saved? Log in.']}
+			</div> : ''}
+
 			<h2 className="statistics__title">{t['Number of words read']}</h2>
 
-		<ResponsiveContainer width="100%" height={450}>
-			<BarChart data={wordsData} margin={{right: 30}}>
-				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis dataKey="date" />
-				<YAxis />
-				<Tooltip />
-				<Bar dataKey="words" fill="#82ca9d" />
-			</BarChart>
-		</ResponsiveContainer>
+			<ResponsiveContainer width="100%" height={450}>
+				<BarChart data={wordsData} margin={{right: 30}}>
+					<CartesianGrid strokeDasharray="3 3" />
+					<XAxis dataKey="date" />
+					<YAxis />
+					<Tooltip />
+					<Bar dataKey="words" fill="#82ca9d" />
+				</BarChart>
+			</ResponsiveContainer>
 
 			<h2 className="statistics__title">{t['Reading time']}</h2>
 
-		<ResponsiveContainer width="100%" height={450}>
-			<BarChart data={timeData} margin={{right: 30}}>
-				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis dataKey="date" />
-				<YAxis />
-				<Tooltip />
-				<Bar dataKey="minutes" fill="#82ca9d" />
-			</BarChart>
-		</ResponsiveContainer>
+			<ResponsiveContainer width="100%" height={450}>
+				<BarChart data={timeData} margin={{right: 30}}>
+					<CartesianGrid strokeDasharray="3 3" />
+					<XAxis dataKey="date" />
+					<YAxis />
+					<Tooltip />
+					<Bar dataKey="minutes" fill="#82ca9d" />
+				</BarChart>
+			</ResponsiveContainer>
 		</div>
 	);
 }
