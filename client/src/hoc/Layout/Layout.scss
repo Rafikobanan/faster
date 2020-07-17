@@ -109,5 +109,17 @@
 				background-color: #8e949e!important;
 			}
 		}
+
+		&__page {
+			& input {
+				background-color: $lightdark;
+				color: $white;
+			}
+			&:hover {
+				input {
+					background-color: #8e949e!important;
+				}
+			}
+		}
 	}
 }
