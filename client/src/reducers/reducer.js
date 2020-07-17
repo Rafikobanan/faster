@@ -13,6 +13,7 @@ import {
 	CHANGE_STATISTICS,
 	CHANGE_LANGUAGE,
 	SERVER_INIT,
+	CHANGE_PAGE,
 } from './types';
 import storage from '../storage/storage';
 import getNormalDate from '../functions/getNormalDate';
@@ -71,14 +72,17 @@ export default function(state, action) {
 				parsedText,
 				currentWord: parsedText[0],
 				currentIndex: 0,
+				pageIndex: 1,
 			};
 
 		case CHANGE_FONT_SIZE:
+			let fontSize = state.styles.fontSize + action.payload;
+			if (fontSize < 8) fontSize = 8;
 			return {
 				...state,
 				styles: {
 					...state.styles,
-					fontSize: state.styles.fontSize + action.payload,
+					fontSize,
 				},
 			};
 
@@ -94,11 +98,14 @@ export default function(state, action) {
 		case CHANGE_POSITION:
 			if (action.payload < 0 && !state.styles.marginTop) return state;
 
+			let marginTop = state.styles.marginTop + 60 * action.payload;
+			if (marginTop > 1080) marginTop = 1080;
+
 			return {
 				...state,
 				styles: {
 					...state.styles,
-					marginTop: state.styles.marginTop + 60 * action.payload,
+					marginTop,
 				},
 			};
 
@@ -107,6 +114,13 @@ export default function(state, action) {
 				return {
 					...state,
 					speed: 1,
+				};
+			}
+
+			if (action.payload >= 2000) {
+				return {
+					...state,
+					speed: 2000,
 				};
 			}
 
@@ -129,6 +143,18 @@ export default function(state, action) {
 				...state,
 				currentWord: state.parsedText[currentIndex],
 				currentIndex,
+				pageIndex: Math.ceil((currentIndex + 1) / 200)
+			};
+
+		case CHANGE_PAGE:
+			let pageIndex = action.payload || 1;
+			pageIndex = Math.min(pageIndex, Math.ceil(state.parsedText.length / 200));
+			const ind = 200 * (pageIndex - 1);
+			return {
+				...state,
+				currentIndex: ind,
+				currentWord: state.parsedText[ind],
+				pageIndex
 			};
 
 		case TOGGLE_THEME:
@@ -161,7 +187,7 @@ export default function(state, action) {
 
 			return {
 				...state,
-				statistics,
+				statistics: {...state.statistics, ...statistics},
 			};
 
 		case CHANGE_LANGUAGE:

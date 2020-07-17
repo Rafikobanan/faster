@@ -31,6 +31,7 @@ function App() {
 		theme: '',
 		statistics: {},
 		language: 'ru',
+		pageIndex: 1,
 	});
 
 	const auth = useAuth();
@@ -47,7 +48,6 @@ function App() {
 				);
 				dispatch({type: SERVER_INIT, payload: data});
 			} catch (e) {
-				console.log(e);
 				auth.logout();
 			}
 		}
@@ -61,12 +61,24 @@ function App() {
 		if (auth.token) {
 			fetchData();
 		}
+		// eslint-disable-next-line 
 	}, [auth.token]);
 	
 
 	useEffect(() => {
-		storage(state);
-	}, [state]);
+		storage({
+			text: state.text,
+			styles: {
+				fontSize: state.styles.fontSize,
+				fontFamily: state.styles.fontFamily,
+				marginTop: state.styles.marginTop,
+			},
+			speed: state.speed,
+			theme: state.theme,
+			statistics: state.statistics,
+			language: state.language,
+		});
+	}, [state.text, state.styles, state.speed, state.theme, state.statistics, state.language]);
 
   return (
 		<Context.Provider value={{...state, state, dispatch, auth, request}}>
