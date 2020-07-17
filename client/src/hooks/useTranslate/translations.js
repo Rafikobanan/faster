@@ -176,6 +176,10 @@ export const translations = {
 		'Data saved successfully': {
 			en: 'Data saved successfully',
 			ru: 'Данные успешно сохранены'
+		},
+		'Something went wrong': {
+			en: 'Something went wrong',
+			ru: 'Что-то пошло не так'
 		}
 	}
 };

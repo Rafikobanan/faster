@@ -88,7 +88,7 @@ router.post(
       { expiresIn: '1d' }
     );
 
-		res.json({ token, data: user.data })
+		res.json({ token })
 
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })

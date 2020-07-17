@@ -4,11 +4,10 @@ import Button from '../../components/UI/Button/Button';
 import { Context } from '../../context/context';
 import useTranslate from '../../hooks/useTranslate/translate.hook';
 import useHttp from '../../hooks/http.hook';
-import { SERVER_INIT } from '../../reducers/types';
 import { toast } from 'react-toastify';
 
 function Auth() {
-	const {language, auth, dispatch} = useContext(Context);
+	const {language, auth} = useContext(Context);
 	const t = useTranslate('Auth', language);
 	const {request} = useHttp();
 	const [isReg, setIsReg] = useState(true);
@@ -24,7 +23,6 @@ function Auth() {
 			if (data.message) {
 				setOutput(data.message);
 			} else {
-				dispatch({type: SERVER_INIT, payload: data.data});
 				auth.login(data.token);
 				setOutput('');
 				toast.success(t['Successful authorization']);

@@ -7,6 +7,7 @@ import {
 	CHANGE_SPEED,
 	CHANGE_FONT_FAMILY,
 	CHANGE_POSITION,
+	CHANGE_PAGE,
 } from '../../reducers/types';
 import './Toolbar.scss';
 import useHint from '../../hooks/Hint/hint.hook';
@@ -17,6 +18,8 @@ function Toolbar({className = ''}) {
 		dispatch,
 		language,
 		speed,
+		parsedText,
+		pageIndex,
 	} = useContext(Context);
 
 	const t = useTranslate('Toolbar', language);
@@ -32,6 +35,12 @@ function Toolbar({className = ''}) {
 		'Arial',
 	];
 
+	const maxIndexPage = Math.ceil(parsedText.length / 200);
+
+	const changeHandler = (val) => {
+		dispatch({type: CHANGE_PAGE, payload: val});
+	};
+
 	return (
 		<div
 			className={`toolbar ${className ? `${className}__toolbar` : ''}`}
@@ -39,14 +48,14 @@ function Toolbar({className = ''}) {
 			<div
 				data-hint={t['Increase font']}
 				className="toolbar__tool"
-				onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: 2})}
+				onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: 4})}
 			>
 				<Icon className="toolbar__icon" icon="#increase-font" />
 			</div>
 			<div
 				data-hint={t['Decrease font']}
 				className="toolbar__tool"
-				onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: -2})}
+				onClick={() => dispatch({type: CHANGE_FONT_SIZE, payload: -4})}
 			>
 				<Icon className="toolbar__icon" icon="#decrease-font" />
 			</div>
@@ -54,6 +63,8 @@ function Toolbar({className = ''}) {
 				type="number"
 				onChange={(e) =>dispatch({type: CHANGE_SPEED,
 					payload: +e.target.value})}
+				min={1}
+				max={2000}
 				value={speed}
 				className="toolbar__tool toolbar__input"
 				data-hint={t['Words per minute']}
@@ -80,6 +91,16 @@ function Toolbar({className = ''}) {
 					style={{transform: 'rotate(180deg)'}}
 					onClick={() => dispatch({type: CHANGE_POSITION, payload: 1})}
 				/>
+			</div>
+			<div className="toolbar__tool toolbar__page" data-hint={"Текущая страница"}>
+				<input
+					type="number"
+					min={1}
+					max={maxIndexPage}
+					value={pageIndex}
+					onChange={(e) => changeHandler(+e.target.value)}
+				/>
+				<span>/ {maxIndexPage}</span>
 			</div>
 			<div className="toolbar__tool" data-hint={t['Start']}>
 				<Icon

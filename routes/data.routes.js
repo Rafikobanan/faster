@@ -22,6 +22,7 @@ router.post(
 				speed: body.speed,
 				theme: body.theme,
 				statistics: body.statistics,
+				language: body.language,
 			};
 
 			const user = await User.findById(req.user.userId);

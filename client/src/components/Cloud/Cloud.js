@@ -24,12 +24,13 @@ function Cloud() {
 					speed: state.speed,
 					theme: state.theme,
 					statistics: state.statistics,
+					language: state.language,
 				},
 				{Authorization: `Bearer ${auth.token}`}
 			);
 			toast.success(t['Data saved successfully']);
 		} catch (e) {
-			toast.error('Something went wrong');
+			toast.error(t['Something went wrong']);
 		}
 	}
 
