@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useContext, useMemo} from 'react';
+import React, {useRef, useEffect, useContext} from 'react';
 import './CurrentWord.scss';
 import {Context} from '../../context/context';
 import useInterval from '../../hooks/interval.hook';
@@ -30,9 +30,9 @@ function CurrentWord() {
 	const form = useRef(null);
 	const inner = useRef(null);
 
-	const marginTop = useMemo(() => 117, []);
+	const marginTop = 117;
 	const counter = useRef(1);
-	const interval = calculateInterval(speed, currentWord.word);
+	const interval = calculateInterval(speed);
 	const timer = useRef(interval / 1000);
 
 	const clickHandler = () => {
@@ -107,9 +107,8 @@ function CurrentWord() {
 	);
 }
 
-function calculateInterval(wordsPerMin, word) {
-	const k = word.length < 11 ? 1 : 3;
-	return 60000 / wordsPerMin * k;
+function calculateInterval(wordsPerMin) {
+	return 60000 / wordsPerMin;
 }
 
 export default CurrentWord;
